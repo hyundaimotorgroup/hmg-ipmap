@@ -1,0 +1,60 @@
+#!/bin/sh
+
+# ------------------------------------------------------
+# prepare-commit-msg hook
+# Automatically injects a commit message template
+# and extracts the ticket number from the branch name.
+# Project: hmg-ipmap-api
+# ------------------------------------------------------
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+
+# Only inject template for new commits.
+# Skip for amend, merge, squash, or message-provided commits.
+[ -n "$COMMIT_SOURCE" ] && exit 0
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# Extract ticket number from branch name.
+# Example: feature/IPMAP-123-add-auth -> IPMAP-123
+TICKET=$(echo "$BRANCH" | grep -oE '[A-Z]+-[0-9]+')
+
+# Inject commit message template
+cat > "$COMMIT_MSG_FILE" << EOF
+
+# ------------------------------------------------------
+# Format  : <type>(<scope>): <description>
+# Breaking: <type>(<scope>)!: <description>
+#
+# Type:
+#   feat      New feature                  (bumps MINOR)
+#   fix       Bug fix                      (bumps PATCH)
+#   perf      Performance improvement      (bumps PATCH)
+#   refactor  Code refactor                (no version bump)
+#   docs      Documentation only           (no version bump)
+#   test      Add or update tests          (no version bump)
+#   build     Build system or deps         (no version bump)
+#   ci        CI/CD configuration          (no version bump)
+#   chore     Maintenance tasks            (no version bump)
+#   style     Formatting, whitespace       (no version bump)
+#
+# Scope examples for this project:
+#   location | auth | cache | batch | api | config
+#
+# Valid examples:
+#   feat(location): add batch save with redis cache
+#   fix(auth): fix JWT refresh token expiry
+#   perf(cache): use reactive valkey template
+#   feat(api)!: breaking change on location endpoint
+# ------------------------------------------------------
+EOF
+
+# Append ticket number if found in branch name
+if [ -n "$TICKET" ]; then
+  echo "# Ticket : $TICKET" >> "$COMMIT_MSG_FILE"
+fi
+
+# Append current branch info
+echo "# Branch : $BRANCH" >> "$COMMIT_MSG_FILE"
+echo "# ------------------------------------------------------" >> "$COMMIT_MSG_FILE"

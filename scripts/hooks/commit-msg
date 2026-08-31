@@ -1,0 +1,61 @@
+#!/bin/sh
+
+# ------------------------------------------------------
+# commit-msg hook
+# Validates that the commit message follows the
+# Conventional Commits specification.
+# Compatible with: commit-and-tag-version (npm)
+# ------------------------------------------------------
+
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+# Skip merge commits
+echo "$COMMIT_MSG" | grep -qE "^Merge " && exit 0
+
+# Skip auto-generated revert commits
+echo "$COMMIT_MSG" | grep -qE "^Revert " && exit 0
+
+# ------------------------------------------------------
+# Conventional commit pattern:
+# <type>(<scope>): <description>
+# <type>(<scope>)!: <description>  <- breaking change
+# ------------------------------------------------------
+PATTERN="^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?(!)?: .{1,100}$"
+
+if ! echo "$COMMIT_MSG" | grep -qE "$PATTERN"; then
+  echo ""
+  echo "  COMMIT REJECTED: commit message does not follow Conventional Commits format."
+  echo ""
+  echo "  Format  : <type>(<scope>): <description>"
+  echo "  Breaking: <type>(<scope>)!: <description>"
+  echo ""
+  echo "  Allowed types:"
+  echo "  ----------------------------------------------------------"
+  echo "  feat      New feature                  (bumps MINOR)"
+  echo "  fix       Bug fix                      (bumps PATCH)"
+  echo "  perf      Performance improvement      (bumps PATCH)"
+  echo "  refactor  Code refactor                (no version bump)"
+  echo "  docs      Documentation only           (no version bump)"
+  echo "  test      Add or update tests          (no version bump)"
+  echo "  build     Build system or deps         (no version bump)"
+  echo "  ci        CI/CD configuration          (no version bump)"
+  echo "  chore     Maintenance tasks            (no version bump)"
+  echo "  style     Formatting, whitespace       (no version bump)"
+  echo "  revert    Revert a previous commit     (no version bump)"
+  echo "  ----------------------------------------------------------"
+  echo ""
+  echo "  Valid examples:"
+  echo "    feat(location): add batch save with redis cache"
+  echo "    fix(auth): fix JWT token expiry issue"
+  echo "    perf(cache): use reactive valkey template"
+  echo "    feat(api)!: breaking change on location endpoint"
+  echo ""
+  echo "  Your commit message:"
+  echo "    $COMMIT_MSG"
+  echo ""
+  exit 1
+fi
+
+echo "Commit message is valid."
+exit 0

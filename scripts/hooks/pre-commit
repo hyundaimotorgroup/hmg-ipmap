@@ -1,0 +1,176 @@
+#!/bin/sh
+
+# ------------------------------------------------------
+# pre-commit hook
+# Runs validation and formatting checks before a commit
+# is created.
+# Project : hmg-ipmap-api
+# ------------------------------------------------------
+
+set -euo pipefail
+
+# ------------------------------------------------------
+# Section 1: Detect operating system
+# ------------------------------------------------------
+detect_os() {
+    case "$(uname -s)" in
+        Linux*)
+            if grep -qi "microsoft" /proc/version 2>/dev/null; then
+                echo "WSL"
+            else
+                echo "Linux"
+            fi
+            ;;
+        Darwin*)
+            echo "macOS"
+            ;;
+        CYGWIN*|MINGW*|MSYS*)
+            echo "Windows"
+            ;;
+        *)
+            echo "Unknown"
+            ;;
+    esac
+}
+
+OS_TYPE=$(detect_os)
+echo "Detected OS: $OS_TYPE"
+
+# ------------------------------------------------------
+# Section 2: Set JAVA_HOME if java is not in PATH
+# ------------------------------------------------------
+if ! command -v java >/dev/null 2>&1; then
+    case "$OS_TYPE" in
+        "WSL"|"Linux")
+            export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
+            ;;
+        "macOS")
+            export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home"
+            ;;
+        "Windows")
+            # Convert Windows path to Unix-style for Git Bash or similar
+            export JAVA_HOME="$(cygpath -u 'C:\Program Files\Java\jdk-21')"
+            ;;
+        *)
+            echo "ERROR: Unsupported OS: $OS_TYPE"
+            exit 1
+            ;;
+    esac
+
+    export PATH="$JAVA_HOME/bin:$PATH"
+    echo "JAVA_HOME set to: $JAVA_HOME"
+fi
+
+echo "Verifying Java installation..."
+java -version
+
+# ------------------------------------------------------
+# Section 3: Move to project module directory
+# ------------------------------------------------------
+ROOT_DIR="$(git rev-parse --show-toplevel)"
+cd "$ROOT_DIR/hmg-ipmap-api"
+echo "Moved to project directory: $PWD"
+
+# ------------------------------------------------------
+# Section 4: Resolve Gradle command based on OS and
+#            available files in the repository
+# ------------------------------------------------------
+if [ -f "./gradlew.bat" ]; then
+    GRADLE_CMD="cmd //C gradlew.bat"
+elif [ -f "./gradlew" ]; then
+    GRADLE_CMD="./gradlew"
+elif command -v gradle >/dev/null 2>&1; then
+    GRADLE_CMD="gradle"
+else
+    echo "ERROR: No gradle or gradlew found. Cannot proceed."
+    exit 1
+fi
+
+# Make gradlew executable if it is not already (Unix only)
+if [ "$GRADLE_CMD" = "./gradlew" ] && [ ! -x "./gradlew" ]; then
+    chmod +x "./gradlew" || true
+    echo "gradlew permission set to executable."
+fi
+
+echo "Using Gradle command: $GRADLE_CMD"
+
+# ------------------------------------------------------
+# Section 5: Check for unresolved conflict markers
+# ------------------------------------------------------
+STAGED_JAVA_RAW=$(git diff --cached --name-only --diff-filter=ACM | grep '\.java$' || true)
+
+if [ -n "$STAGED_JAVA_RAW" ]; then
+    CONFLICT=$(echo "$STAGED_JAVA_RAW" | xargs grep -l "<<<<<<< HEAD" 2>/dev/null || true)
+    if [ -n "$CONFLICT" ]; then
+        echo "ERROR: Unresolved conflict markers found in:"
+        echo "$CONFLICT"
+        echo "       Resolve all conflicts before committing."
+        exit 1
+    fi
+fi
+
+# ------------------------------------------------------
+# Section 6: Check for sensitive files in staged changes
+# ------------------------------------------------------
+STAGED_ALL=$(git diff --cached --name-only --diff-filter=ACM || true)
+for FILE in $STAGED_ALL; do
+    case "$FILE" in
+        *.env|.env*|*secret*|*credential*|*.pem|*.key|*.p12)
+            echo "ERROR: Sensitive file detected: $FILE"
+            echo "       Remove it from staging before committing."
+            exit 1
+            ;;
+    esac
+done
+
+# ------------------------------------------------------
+# Section 7: Warn if System.out.println is used
+#            This is a warning only and will not block
+#            the commit. Use SLF4J logger instead.
+# ------------------------------------------------------
+if [ -n "$STAGED_JAVA_RAW" ]; then
+    PRINTLN=$(echo "$STAGED_JAVA_RAW" | xargs grep -l "System\.out\.println" 2>/dev/null || true)
+    if [ -n "$PRINTLN" ]; then
+        echo "WARNING: System.out.println found in the following files."
+        echo "         Use log.info or log.debug instead."
+        echo "$PRINTLN"
+    fi
+fi
+
+# ------------------------------------------------------
+# Section 8: Block direct commits to protected branches
+# ------------------------------------------------------
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if echo "$BRANCH" | grep -qE "^(main|master|stg|prod)$"; then
+    echo "ERROR: Direct commit to protected branch '$BRANCH' is not allowed."
+    echo "       Create a feature or fix branch first."
+    exit 1
+fi
+
+# ------------------------------------------------------
+# Section 9: Run Spotless formatting on staged Java files
+#            Strips the module prefix from file paths
+#            since we are already inside the module dir.
+#            Re-stages files after formatting is applied.
+# ------------------------------------------------------
+STAGED_FILES=$(echo "$STAGED_JAVA_RAW" | sed 's|^hmg-ipmap-api/||')
+
+if [ -n "$STAGED_FILES" ]; then
+    echo "Running Spotless on staged Java files..."
+
+    for FILE in $STAGED_FILES; do
+        echo "Formatting: $FILE"
+        $GRADLE_CMD spotlessApply -PspotlessFiles="$FILE" --quiet
+        git add "$FILE"
+    done
+
+    echo "Spotless formatting complete."
+else
+    echo "No staged Java files found. Skipping Spotless."
+fi
+
+# ------------------------------------------------------
+# Result
+# ------------------------------------------------------
+echo "All pre-commit checks passed."
+exit 0

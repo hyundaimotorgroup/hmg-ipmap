@@ -1,0 +1,69 @@
+### upload location zip
+PUT {{api}}/file-imports/{{jobId}}/location-zip
+X-HMGIPMAP-APIKEY: {{apiKey}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="location.zip"
+
+< D:/IPMAP/oss/location.zip
+--WebAppBoundary--
+
+### upload ip block
+PUT {{api}}/file-imports/{{jobId}}/ip-block-zip
+X-HMGIPMAP-APIKEY: {{apiKey}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="ip-block.zip"
+
+< D:/IPMAP/oss/ip-block.zip
+--WebAppBoundary--
+
+### run the job
+PUT {{api}}/file-imports/{{jobId}}
+X-HMGIPMAP-APIKEY: {{apiKey}}
+Content-Type: application/json
+
+{
+  "action": "RUN"
+}
+
+### cancel the job
+PUT {{api}}/file-imports/{{jobId}}
+X-HMGIPMAP-APIKEY: {{apiKey}}
+Content-Type: application/json
+
+{
+  "action": "cancel"
+}
+
+### get job status
+GET {{api}}/file-imports/{{jobId}}
+X-HMGIPMAP-APIKEY: {{apiKey}}
+Content-Type: application/json
+
+### get job status by file type
+GET {{api}}/file-imports/{{jobId}}/city-zip
+X-HMGIPMAP-APIKEY: {{apiKey}}
+Content-Type: application/json
+
+### get all user
+GET {{api}}/users
+X-HMGIPMAP-APIKEY: {{apiKey}}
+Content-Type: application/json
+
+### get all location
+GET {{api}}/locations
+X-HMGIPMAP-APIKEY: {{apiKey}}
+Content-Type: application/json
+
+### get all ip mapping location
+GET {{api}}/ip-mappings
+X-HMGIPMAP-APIKEY: {{apiKey}}
+Content-Type: application/json
+
+### inquiry ip location
+GET {{api}}/ip-location?ip=103.21.244.1
+X-HMGIPMAP-APIKEY: {{apiKey}}
+Content-Type: application/json

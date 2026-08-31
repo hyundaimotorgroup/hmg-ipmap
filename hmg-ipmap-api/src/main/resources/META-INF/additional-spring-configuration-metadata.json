@@ -1,0 +1,33 @@
+{
+  "properties": [
+    {
+      "name": "app.version",
+      "type": "java.lang.String",
+      "description": "Application version injected by the Gradle release plugin at build time. Not bound to any @Value field — used for logging and monitoring only."
+    },
+    {
+      "name": "cache-sync.job.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Enables or disables the CacheSyncJobScheduler. Consumed by @ConditionalOnProperty — not a @Value binding.",
+      "defaultValue": true
+    },
+    {
+      "name": "app.data-provider",
+      "type": "java.lang.String",
+      "description": "Active data provider for batch imports. Consumed by @ConditionalOnProperty DefaultDataProvider or any custom implementation.",
+      "defaultValue": "default"
+    },
+    {
+      "name": "app.ingestion.polling.fixed-delay",
+      "type": "java.lang.Long",
+      "description": "Fixed delay in milliseconds between BatchJobPollingScheduler executions. Consumed by @Scheduled(fixedDelayString).",
+      "defaultValue": 30000
+    },
+    {
+      "name": "cache-sync.job.fixed-delay",
+      "type": "java.lang.Long",
+      "description": "Fixed delay in milliseconds between CacheSyncJobScheduler executions. Consumed by @Scheduled(fixedDelayString).",
+      "defaultValue": 5000
+    }
+  ]
+}

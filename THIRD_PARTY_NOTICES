@@ -1,0 +1,916 @@
+THIRD-PARTY NOTICES
+
+hmg-IPMap includes the following third-party open source software components.
+This list was generated from the project's Black Duck (OSSP) open source scan.
+
+==============================================================================
+
+Apache Commons Lang 3.18.0
+License: Apache License 2.0
+Website: https://github.com/apache/commons-lang
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc. Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved Copyright 2001-2025 The Apache Software Foundation This product includes software developed at
+
+------------------------------------------------------------------------------
+
+error-prone annotations 2.43.0
+License: Apache License 2.0
+Website: https://github.com/google/error-prone/tree/master/annotations
+Copyright: Copyright 2020 The Error Prone Authors.
+
+------------------------------------------------------------------------------
+
+Apache Log4J API 2.24.3
+License: Apache License 2.0
+Website: http://logging.apache.org/log4j/2.x/log4j-api
+Copyright: Copyright 1999-2024 The Apache Software Foundation
+
+------------------------------------------------------------------------------
+
+jackson-bom 2.21.2
+License: Apache License 2.0
+Copyright: Copyright 2007-, Tatu Saloranta (tatu.saloranta@iki.fi)
+
+------------------------------------------------------------------------------
+
+Jandex: Core 3.2.0
+License: Apache License 2.0
+Website: https://mvnrepository.com/artifact/io.smallrye/jandex/3.2.0
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc. , Copyright (c) 2013, 2020, Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
+
+reactive-streams-jvm 1.0.4
+License: MIT No Attribution
+Website: http://www.reactive-streams.org
+Copyright: Copyright 2014 Reactive Streams
+
+------------------------------------------------------------------------------
+
+ASM 9.5
+License: BSD 3-clause "New" or "Revised" License
+Website: http://asm.ow2.org
+Copyright: Copyright (c) 2000-2011 INRIA, France Telecom All rights reserved.
+
+------------------------------------------------------------------------------
+
+redis-authx-core 0.1.1-beta2
+License: MIT License
+Website: https://github.com/redis/redis-authx-core
+Copyright: Copyright 2024, Redis Ltd. and Contributors
+
+------------------------------------------------------------------------------
+
+Jackson-module-parameter-names 2.21.2
+License: Apache License 2.0
+Website: https://github.com/FasterXML/jackson-modules-java8/jackson-module-parameter-names
+Copyright: Copyright 2013-2024 FasterXML, LLC
+
+------------------------------------------------------------------------------
+
+LatencyUtils 2.0.3
+License: BSD 2-clause "Simplified" License
+Website: https://github.com/LatencyUtils/LatencyUtils
+Copyright: • Copyright (c) 2012, 2013, 2014 Gil Tene
+
+------------------------------------------------------------------------------
+
+JUnit Jupiter (Aggregator) 5.12.2
+License: Eclipse Public License 2.0
+Website: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter
+Copyright: Copyright 2015-2025 the original author or authors.
+
+------------------------------------------------------------------------------
+
+JSpecify annotations 1.0.0
+License: Apache License 2.0
+Website: https://mvnrepository.com/artifact/org.jspecify/jspecify
+Copyright: Copyright (c) 2022 The JSpecify Authors
+
+------------------------------------------------------------------------------
+
+Hibernate ORM 6.6.49
+License: GNU Lesser General Public License v2.1 only
+Website: https://github.com/hibernate/hibernate-orm
+Copyright: Copyright (c) Red Hat Inc. and/or its affiliates
+
+------------------------------------------------------------------------------
+
+JUnit5 5.12.2
+License: Eclipse Public License 2.0
+Website: https://github.com/junit-team/junit-framework/releases/tag/r5.12.2
+Copyright: Copyright © 2025 The JUnit Team
+
+------------------------------------------------------------------------------
+
+Spring Data Commons 3.5.11
+License: Apache License 2.0
+Website: https://github.com/spring-projects/spring-data-commons
+Copyright: Copyright 2008-2024 the original author or authors.
+
+------------------------------------------------------------------------------
+
+jakarta.xml.bind-api 4.0.4
+License: Eclipse Distribution License 1.0
+Website: https://github.com/jakartaee/jaxb-api
+Copyright: Copyright (c) 2017, 2018 Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
+
+Mockito 5.17.0
+License: MIT License
+Website: http://mockito.org
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc., Copyright (c) 2017 Mockito contributors, Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
+
+hypersistence-utils-hibernate-63 3.11.0
+License: Apache License 2.0
+Website: https://github.com/vladmihalcea/hypersistence-utils
+Copyright: Copyright (c) 2016-2024 Vlad Mihalcea
+
+------------------------------------------------------------------------------
+
+mockito-inline 5.2.0
+License: MIT License
+Website: https://mvnrepository.com/artifact/org.mockito/mockito-inline
+Copyright: Copyright (c) 2007 Mockito contributors
+
+------------------------------------------------------------------------------
+
+Redisson/Spring Data Redis v3.5.x integration 3.52.0
+License: Apache License 2.0
+Website: https://github.com/redisson/redisson
+Copyright: Copyright (c) 2013-2024 Nikita Koksharov
+
+------------------------------------------------------------------------------
+
+Hamcrest 3.0
+License: BSD 3-clause "New" or "Revised" License
+Website: http://hamcrest.org
+Copyright: Copyright (c) 2000-2024, www.hamcrest.org Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 1. Redistributi
+
+------------------------------------------------------------------------------
+
+spring-retry 2.0.12
+License: Apache License 2.0
+Website: https://github.com/SpringSource/spring-retry
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc., Copyright (c) 2020, 2022, Oracle and/or its affiliates. All rights reserved, Copyright (c) 2006-2023 the original author or authors.
+
+------------------------------------------------------------------------------
+
+org.apiguardian:apiguardian-api 1.1.2
+License: Apache License 2.0
+Website: https://github.com/apiguardian-team/apiguardian
+Copyright: (C) 1995-2013 Jean-loup Gailly and Mark Adler (C) 2014-2017 Vitaly Puzrin and Andrey Tupitsin Copyright 2002-2017 the original author or authors. Copyright (c) 2013, 2018, Oracle and/or its affiliates. All rights reserved
+
+------------------------------------------------------------------------------
+
+commons collections 4.5.0
+License: Apache License 2.0
+Website: http://commons.apache.org/proper/commons-collections
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc., Copyright (c) 2003 by Bitstream, Inc. All Rights Reserved
+
+------------------------------------------------------------------------------
+
+Spring Boot Developer Tools 3.5.14
+License: Apache License 2.0
+Website: https://github.com/spring-projects/spring-boot
+Copyright: Copyright (c) 2012-2025 VMware, Inc.
+
+------------------------------------------------------------------------------
+
+Jodd Util 6.3.0
+License: BSD 2-clause "Simplified" License
+Website: https://util.jodd.org
+Copyright: Copyright (c) 2003-present, Jodd Team (http://jodd.org) # All rights reserved
+
+------------------------------------------------------------------------------
+
+javax.transaction API 2.0.1
+License: Eclipse Public License 2.0
+Website: https://github.com/jakartaee/transactions
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc.
+
+------------------------------------------------------------------------------
+
+JUL to SLF4J bridge 2.0.17
+License: MIT License
+Website: http://www.slf4j.org
+Copyright: Copyright (c) 2004-2022 QOS.ch Sarl (Switzerland) , Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
+
+opentest4j 1.3.0
+License: Apache License 2.0
+Website: https://mvnrepository.com/artifact/org.opentest4j/opentest4j/1.3.0
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc. , Copyright (c) 2020, 2022, Oracle and/or its affiliates. All rights reserved, Copyright 2015-2023 the original author or authors.
+
+------------------------------------------------------------------------------
+
+json-smart 2.5.2
+License: Apache License 2.0
+Website: http://netplex.github.io/json-smart
+Copyright: Copyright 2011 JSON-SMART authors
+
+------------------------------------------------------------------------------
+
+HdrHistogram 2.2.2
+License: BSD 2-clause "Simplified" License
+Website: https://github.com/HdrHistogram/HdrHistogram
+Copyright: Copyright (c) 2012, 2013, 2014, 2015, 2016 Gil Tene Copyright (c) 2014 Michael Barker Copyright (c) 2014 Matt Warren All rights reserved.
+
+------------------------------------------------------------------------------
+
+JaCoCo 0.8.10
+License: Eclipse Public License 2.0
+Website: http://www.eclemma.org/jacoco
+Copyright: Copyright (C) 2006 Google Inc. , Copyright (c) 2009, 2023 Mountainminds GmbH
+
+------------------------------------------------------------------------------
+
+MapStruct Core 1.5.5
+License: Apache License 2.0
+Website: https://mapstruct.org
+Copyright: (C) 1995-2013 Jean-loup Gailly and Mark Adler (C) 2014-2017 Vitaly Puzrin and Andrey Tupitsin Copyright (c) 2013, 2018, Oracle and/or its affiliates. All rights reserved
+
+------------------------------------------------------------------------------
+
+spring-boot-actuator 3.5.14
+License: Apache License 2.0
+Website: https://github.com/spring-projects/spring-boot
+Copyright: Copyright (c) 2012-2026 VMware, Inc.
+
+------------------------------------------------------------------------------
+
+org.xmlunit:xmlunit-core 2.10.4
+License: Apache License 2.0
+Website: https://www.xmlunit.org
+Copyright: Copyright (c) 2008,2015 Stefan Bodewig
+
+------------------------------------------------------------------------------
+
+PathJson 2.9.0
+License: Apache License 2.0
+Website: https://github.com/json-path/JsonPath
+Copyright: Copyright 2011 the original author or authors.
+
+------------------------------------------------------------------------------
+
+Caffeine cache 3.2.3
+License: Apache License 2.0
+Website: https://github.com/ben-manes/caffeine
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc. (c) 2003 by Bitstream, Inc. All Rights Reserved Copyright (c) 2006 by Tavmjong Bah. All Rights Reserved Copyright 2025 Ben Manes. All Rights Reserved Copyright (c) 2010, 2025, Oracle and/or its affiliates. All rights reserved
+
+------------------------------------------------------------------------------
+
+micrometer-observation 1.15.11
+License: Apache License 2.0
+Copyright: Copyright (c) 2017-Present VMware, Inc. All Rights Reserved.
+
+------------------------------------------------------------------------------
+
+kryo 5.6.2
+License: BSD 3-clause "New" or "Revised" License
+Website: https://github.com/EsotericSoftware/kryo
+Copyright: (C) 1995-2013 Jean-loup Gailly and Mark Adler (c) 2009-2016 Stuart Knightley (C) 2014-2017 Vitaly Puzrin and Andrey Tupitsin Copyright 2006-2021 Joe Walnes, Henri Tremblay, Leonardo Mesquita Copyright (c) 2020, 2022, Oracle and/or its affiliates. All rights reserved Copyright (c) 2008-2023, Nathan Sweet
+
+------------------------------------------------------------------------------
+
+Spring Boot Test Auto-Configure 3.5.14
+License: Apache License 2.0
+Website: https://github.com/spring-projects/spring-boot
+Copyright: Copyright (c) 2012-2026 VMware, Inc.
+
+------------------------------------------------------------------------------
+
+jackson-databind 2.16.0
+License: Apache License 2.0
+Website: https://github.com/FasterXML/jackson-databind
+Copyright: Copyright 2011 Google Inc. All Rights Reserved Copyright 2015 Ben Manes. All Rights Reserved
+
+------------------------------------------------------------------------------
+
+org.junit.platform:junit-platform-engine 1.12.2
+License: Eclipse Public License 2.0
+Website: https://mvnrepository.com/artifact/org.junit.platform/junit-platform-engine
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc., Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved., Copyright 2015-2025 the original author or authors.
+
+------------------------------------------------------------------------------
+
+springdoc-openapi-starter-webmvc-api 2.8.14
+License: Apache License 2.0
+Website: https://github.com/springdoc/springdoc-openapi/tree/main/springdoc-openapi-starter-webmvc-api
+Copyright: Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved., Copyright 2019-2025 the original author or authors.
+
+------------------------------------------------------------------------------
+
+Spring Framework 6.2.18
+License: Apache License 2.0
+Website: https://github.com/spring-projects/spring-framework
+Copyright: Copyright (c) 2002-2026 Pivotal, Inc.
+
+------------------------------------------------------------------------------
+
+ASM Commons 9.5
+License: BSD 3-clause "New" or "Revised" License
+Website: http://asm.ow2.io
+Copyright: Copyright (c) 2000-2011 INRIA, France Telecom. All rights reserved Copyright (c) 2020, 2022, Oracle and/or its affiliates. All rights reserved
+
+------------------------------------------------------------------------------
+
+reactor-core 3.7.18
+License: Apache License 2.0
+Website: https://github.com/reactor/reactor-core
+Copyright: Copyright (c) 2016-2024 VMware Inc. or its affiliates, All Rights Reserved
+
+------------------------------------------------------------------------------
+
+IPAddress 5.5.1
+License: Apache License 2.0
+Website: https://github.com/seancfoley/IPAddress
+Copyright: Copyright 2016-2024 Sean C Foley
+
+------------------------------------------------------------------------------
+
+org.junit.jupiter:junit-jupiter-engine 5.12.2
+License: Eclipse Public License 2.0
+Website: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine/5.12.2
+Copyright: Copyright 2015-2025 the original author or authors Copyright © 2025 The JUnit Team
+
+------------------------------------------------------------------------------
+
+org.junit.jupiter:junit-jupiter-api 5.12.2
+License: Eclipse Public License 2.0
+Website: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc., Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved., Copyright 2015-2025 the original author or authors.
+
+------------------------------------------------------------------------------
+
+SLF4J API Module 2.0.17
+License: MIT License
+Website: http://www.slf4j.org
+Copyright: Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved. , Copyright (c) 2004-2024 QOS.ch
+
+------------------------------------------------------------------------------
+
+jackson-dataformat-yaml 2.21.2
+License: Apache License 2.0
+Website: https://github.com/FasterXML/jackson-dataformat-yaml
+Copyright: Copyright 2007-, Tatu Saloranta (tatu.saloranta@iki.fi)
+
+------------------------------------------------------------------------------
+
+jackson-modules-java8 2.21.2
+License: Apache License 2.0
+Website: https://github.com/FasterXML/jackson-modules-java8
+Copyright: Copyright 2007-, Tatu Saloranta (tatu.saloranta@iki.fi)
+
+------------------------------------------------------------------------------
+
+jakarta validation 3.0.2
+License: Apache License 2.0
+Website: https://github.com/jakartaee/validation
+Copyright: Copyright © Red Hat, Inc. Copyright © 2019,2020 Eclipse Foundation.
+
+------------------------------------------------------------------------------
+
+ASM 9.7.1
+License: BSD 3-clause "New" or "Revised" License
+Website: http://asm.ow2.org
+Copyright: Copyright (c) 2000-2011 INRIA, France Telecom All rights reserved.
+
+------------------------------------------------------------------------------
+
+Lombok 1.18.32
+License: MIT License
+Website: https://projectlombok.org/all-versions
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc. Copyright (c) 2010 Reinier Zwitserloot. Copyright (c) 2000-2011 INRIA, France Telecom All rights reserved Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved Copyright (C) 2009-2024 The Project Lombok Authors.
+
+------------------------------------------------------------------------------
+
+opencsv 5.12.0
+License: Apache License 2.0
+Website: http://opencsv.sourceforge.net
+Copyright: Copyright 2007,2010 Kyle Miller. Copyright 2013 Mark Rogers. Copyright 2015 Scott Conway Copyright 2017 arjones. Copyright 2018 Bytecode Pty Ltd. Copyright 2018 Andrew Rucker Jones. Copyright 2018 Andre Levandovski Rosot.
+
+------------------------------------------------------------------------------
+
+jsr107 1.1.1
+License: Apache License 2.0
+Website: https://github.com/jsr107
+Copyright: Copyright 2011-2016 Oracle America Incorporated Copyright 2011-2016 Terracotta, Inc.
+
+------------------------------------------------------------------------------
+
+JSON library from Android SDK 0.0.20131108.vaadin1
+License: Apache License 2.0
+Website: http://developer.android.com/sdk
+Copyright: Copyright (C) 2010 The Android Open Source Project
+
+------------------------------------------------------------------------------
+
+univocity-parsers 2.9.1
+License: Apache License 2.0
+Website: http://github.com/univocity/univocity-parsers
+Copyright: Copyright 2019 Univocity Software Pty Ltd
+
+------------------------------------------------------------------------------
+
+EasyMock 3.4
+License: Apache License 2.0
+Website: http://www.easymock.org
+Copyright: Copyright (c) 1998 by William King (wrking@eng.sun.com) and Copyright 2011 The Apache Software Foundation Copyright (c) 2004-2011, Eugene Kuleshov * All rights reserved Copyright (c) 2000-2013 INRIA, France Telecom * All rights reserved Copyright 2001-2015 the original author or authors.
+
+------------------------------------------------------------------------------
+
+Angus Activation Registries 2.0.3
+License: Eclipse Distribution License 1.0
+Website: https://github.com/eclipse-ee4j/angus-activation/angus-activation
+Copyright: (C) 1995-2013 Jean-loup Gailly and Mark Adler Copyright 2015 jQuery Foundation and other contributors; Licensed MIT (c) 2009-2016 Stuart Knightley <stuart (C) 2014-2017 Vitaly Puzrin and Andrey Tupitsin This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the Copyright (c) 1997, 2025 Oracle and/or its affiliates. All rights reserved
+
+------------------------------------------------------------------------------
+
+SnakeYAML 2.4
+License: Apache License 2.0
+Website: http://code.google.com/p/snakeyaml
+Copyright: Copyright (c) 2008, SnakeYAML
+
+------------------------------------------------------------------------------
+
+Spring Boot 3.5.14
+License: Apache License 2.0
+Website: https://github.com/spring-projects/spring-boot
+Copyright: Copyright (c) 2012-2025 VMware, Inc.
+
+------------------------------------------------------------------------------
+
+Jakarta Dependency Injection 2.0.1
+License: Apache License 2.0
+Website: https://github.com/jakartaee/inject-tck
+Copyright: Copyright (c) 2018, Eclipse Foundation, Inc. and its licensors.
+
+------------------------------------------------------------------------------
+
+Tomcat 10.1.55
+License: Apache License 2.0
+Website: https://github.com/apache/tomcat
+Copyright: Copyright (c) 1999-2024, The Apache Software Foundation
+
+------------------------------------------------------------------------------
+
+springdoc-openapi-starter-common 2.8.14
+License: Apache License 2.0
+Website: https://springdoc.org/springdoc-openapi-starter-common
+Copyright: Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved., Copyright &#169; 2025. All rights reserved., Copyright 2019-2025 the original author or authors.
+
+------------------------------------------------------------------------------
+
+swagger-models-jakarta 2.2.38
+License: Apache License 2.0
+Website: https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-models-jakarta
+Copyright: Copyright (c) 2015. SmartBear Software Inc.
+
+------------------------------------------------------------------------------
+
+JSONassert 1.5.3
+License: Apache License 2.0
+Website: https://github.com/skyscreamer/JSONassert
+Copyright: Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
+
+Hibernate Validator 8.0.3
+License: Apache License 2.0
+Website: http://validator.hibernate.org
+Copyright: Copyright Red Hat, Inc and contributors
+
+------------------------------------------------------------------------------
+
+istack common utility code runtime 4.1.2
+License: Eclipse Distribution License 1.0
+Website: http://java.net/istack-commons/istack-commons-runtime
+Copyright: Copyright (c) 2026 Contributors to the Eclipse Foundation. All rights reserved. Copyright (c) 2012, 2023 Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
+
+HikariCP 6.3.3
+License: Apache License 2.0
+Website: http://brettwooldridge.github.io/HikariCP
+Copyright: Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>, (C) 1995-2013 Jean-loup Gailly and Mark Adler, Copyright (C) 2013, 2014 Brett Wooldridge, (c) 2009-2016 Stuart Knightley <stuart, (C) 2014-2017 Vitaly Puzrin and Andrey Tupitsin This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the
+
+------------------------------------------------------------------------------
+
+Spring Boot Cache Starter 3.5.14
+License: Apache License 2.0
+Website: https://github.com/spring-projects/spring-boot
+Copyright: Copyright (c) 2012-2024 Pivotal Software, Inc. and contributors
+
+------------------------------------------------------------------------------
+
+spring-data-redis 3.5.11
+License: Apache License 2.0
+Website: https://github.com/spring-projects/spring-data-redis
+Copyright: Copyright 2011-present the original author or authors.
+
+------------------------------------------------------------------------------
+
+micrometer-jakarta9 1.15.11
+License: Apache License 2.0
+Website: https://github.com/micrometer-metrics/micrometer
+Copyright: Copyright (c) 2017-Present VMware, Inc. All Rights Reserved.
+
+------------------------------------------------------------------------------
+
+Spring Boot Actuator AutoConfigure 3.5.14
+License: Apache License 2.0
+Website: https://github.com/spring-projects/spring-boot
+Copyright: Copyright (c) 2012-2026 VMware, Inc.
+
+------------------------------------------------------------------------------
+
+Jakarta Annotations API 2.1.1
+License: Eclipse Public License 2.0
+Website: https://github.com/jakartaee/common-annotations-api
+Copyright: Copyright (c) 2005, 2023 Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
+
+JAXB API 2.3.1
+License: Common Development and Distribution License 1.1
+Website: https://jakarta.ee/specifications/xml-binding
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc. 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA Copyright (c) 2003-2018 Oracle and/or its affiliates. All rights reserved
+
+------------------------------------------------------------------------------
+
+postgresql jdbc driver 42.7.11
+License: BSD 3-clause "New" or "Revised" License
+Website: https://github.com/pgjdbc/pgjdbc
+Copyright: Copyright (c) 2004, Open Cloud Limited. Copyright (c) 2017, PostgreSQL Global Development Group
+
+------------------------------------------------------------------------------
+
+LiquiBase 5.0.1
+License: Functional Source License Version 1.1 ALv2 Future License
+Website: https://github.com/liquibase/liquibase
+Copyright: Copyright (c) 2006-2025 Liquibase.org
+
+------------------------------------------------------------------------------
+
+Spring Batch Infrastructure 5.2.5
+License: Apache License 2.0
+Website: http://static.springframework.org/spring-batch/spring-batch-infrastructure
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc., Copyright 2002-2018 the original author or authors., Copyright (c) 2020, 2022, Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
+
+jackson-annotations 2.21
+License: Apache License 2.0
+Website: https://github.com/FasterXML/jackson-annotations
+Copyright: Copyright 2007-, Tatu Saloranta (tatu.saloranta@iki.fi)
+
+------------------------------------------------------------------------------
+
+RxJava 3.1.12
+License: Apache License 2.0
+Website: http://reactivex.io
+Copyright: Copyright (c) 2016-present, RxJava Contributors., Copyright 2016-2019 David Karnok
+
+------------------------------------------------------------------------------
+
+swagger-ui 5.30.1
+License: Apache License 2.0
+Website: http://swagger.io
+Copyright: © 2014-2025 Denis Pushkarev (zloirock.ru)
+
+------------------------------------------------------------------------------
+
+commons-text 1.14.0
+License: Apache License 2.0
+Website: https://github.com/apache/commons-text
+Copyright: Copyright 2014-2025 The Apache Software Foundation
+
+------------------------------------------------------------------------------
+
+Spring Batch 5.2.5
+License: Apache License 2.0
+Website: http://projects.spring.io/spring-batch
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc., Copyright 2002-2018 the original author or authors., Copyright (c) 2020, 2022, Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
+
+byte-buddy-agent 1.17.8
+License: Apache License 2.0
+Website: https://github.com/raphw/byte-buddy
+Copyright: Copyright 2014 - Present Rafael Winterhalter
+
+------------------------------------------------------------------------------
+
+minlog 1.3.1
+License: BSD 3-clause "New" or "Revised" License
+Website: http://code.google.com/p/minlog
+Copyright: Copyright: 2013, Damien Raude-Morvan <drazzib@debian.org> Copyright: 2008-2014, Nathan Sweet
+
+------------------------------------------------------------------------------
+
+Apache Log4j to SLF4J Adapter 2.24.3
+License: Apache License 2.0
+Website: http://logging.apache.org/log4j/2.x/log4j-to-slf4j
+Copyright: Copyright 1999-2024 The Apache Software Foundation
+
+------------------------------------------------------------------------------
+
+mockito-junit-jupiter 5.17.0
+License: MIT License
+Website: https://github.com/mockito/mockito/tree/main/mockito-extensions/mockito-junit-jupiter
+Copyright: Copyright (c) 2007 Mockito contributors
+
+------------------------------------------------------------------------------
+
+jakarta.persistence-api 3.1.0
+License: GNU General Public License v2.0 w/Classpath exception
+Website: https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api
+Copyright: Copyright (c) 2020, 2025 Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
+
+TXW2 Runtime 4.0.6
+License: Eclipse Distribution License 1.0
+Website: https://mvnrepository.com/artifact/org.glassfish.jaxb/txw2
+Copyright: Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
+
+Awaitility 4.2.2
+License: Apache License 2.0
+Website: https://github.com/awaitility/awaitility
+Copyright: Copyright (C) 2007 Google Inc. Copyright (C) 2011 The Guava Authors Copyright 2017 the original author or authors.
+
+------------------------------------------------------------------------------
+
+JAXB Runtime 4.0.6
+License: Eclipse Distribution License 1.0
+Website: https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime
+Copyright: Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
+
+Lombok Mapstruct Binding 0.2.0
+License: MIT License
+Website: https://mvnrepository.com/artifact/org.projectlombok/lombok-mapstruct-binding/0.2.0
+Copyright: (c) JS Foundation and other contributors Copyright (C) 2020 The Project Lombok Authors.
+
+------------------------------------------------------------------------------
+
+micrometer-metrics 1.15.11
+License: Apache License 2.0
+Website: https://github.com/micrometer-metrics/micrometer
+Copyright: Copyright (c) 2017-Present VMware, Inc. All Rights Reserved.
+
+------------------------------------------------------------------------------
+
+org.junit.jupiter:junit-jupiter-params 5.12.2
+License: Eclipse Public License 2.0
+Website: https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc., Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved., Copyright 2015-2025 the original author or authors.
+
+------------------------------------------------------------------------------
+
+swagger-core-jakarta 2.2.38
+License: Apache License 2.0
+Website: https://github.com/swagger-api/swagger-core
+Copyright: Copyright (c) 2015. SmartBear Software Inc.
+
+------------------------------------------------------------------------------
+
+Logback 1.5.32
+License: Eclipse Public License 2.0
+Website: http://logback.qos.ch
+Copyright: Copyright (C) 1999-2026, QOS.ch.
+
+------------------------------------------------------------------------------
+
+springdoc-openapi-starter-webmvc-ui 2.8.14
+License: Apache License 2.0
+Website: https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
+Copyright: Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved., Copyright 2019-2025 the original author or authors.
+
+------------------------------------------------------------------------------
+
+Netty/Transport/Native/Unix/Common 4.1.133
+License: Apache License 2.0
+Website: https://github.com/netty/netty
+Copyright: Copyright 2012-2025 The Netty Project
+
+------------------------------------------------------------------------------
+
+Jackson-Datatype-JSR310 2.21.2
+License: Apache License 2.0
+Website: http://wiki.fasterxml.com/JacksonModuleJSR310
+Copyright: Copyright 2013 FasterXML.com
+
+------------------------------------------------------------------------------
+
+JBoss Logging 3 3.6.3
+License: Apache License 2.0
+Website: https://github.com/jboss-logging/jboss-logging
+Copyright: Copyright 2023 Red Hat, Inc.
+
+------------------------------------------------------------------------------
+
+Netty Project 4.1.133
+License: Apache License 2.0
+Website: https://github.com/netty/netty
+Copyright: Copyright 2012-2025 The Netty Project
+
+------------------------------------------------------------------------------
+
+spring-data-keyvalue 3.5.11
+License: Apache License 2.0
+Website: https://github.com/spring-projects/spring-data-keyvalue
+Copyright: Copyright 2015-present the original author or authors.
+
+------------------------------------------------------------------------------
+
+java-classmate 1.7.3
+License: Apache License 2.0
+Website: http://fasterxml.com
+Copyright: Copyright (c) 2010–2023 FasterXML, LLC
+
+------------------------------------------------------------------------------
+
+redisson 3.52.0
+License: Apache License 2.0
+Website: https://github.com/redisson/redisson
+Copyright: Copyright (c) 2013-2026 Nikita Koksharov
+
+------------------------------------------------------------------------------
+
+AspectJ weaver 1.9.25.1
+License: Eclipse Public License 2.0
+Website: https://www.eclipse.org/aspectj
+Copyright: Copyright (c) 2004 Contributors.
+
+------------------------------------------------------------------------------
+
+Spring Boot Test 3.5.14
+License: Apache License 2.0
+Website: https://github.com/spring-projects/spring-boot
+Copyright: Copyright (c) 2012-2026 VMware, Inc.
+
+------------------------------------------------------------------------------
+
+org.junit.platform:junit-platform-commons 1.12.2
+License: Eclipse Public License 2.0
+Website: https://mvnrepository.com/artifact/org.junit.platform/junit-platform-commons
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc., Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved., Copyright 2015-2025 the original author or authors.
+
+------------------------------------------------------------------------------
+
+hypersistence-tsid 2.1.4
+License: MIT License
+Copyright: Copyright (c) 2020-2022 Fabio Lima, Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
+
+jackson-core 2.21.2
+License: Apache License 2.0
+Website: https://github.com/FasterXML/jackson-core
+Copyright: Copyright 2007-, Tatu Saloranta (tatu.saloranta@iki.fi), Copyright 2018-2020 Raffaello Giulietti, Copyright (c) 2021 The fast_float authors, Copyright 2022 Tim Buktu, Copyright (c) 2022 Daniel Lemire, © 2023 Werner Randelshofer, Switzerland.
+
+------------------------------------------------------------------------------
+
+micrometer-commons 1.15.11
+License: Apache License 2.0
+Copyright: Copyright (c) 2017-Present VMware, Inc. All Rights Reserved.
+
+------------------------------------------------------------------------------
+
+Spring Data JPA 3.5.11
+License: Apache License 2.0
+Website: https://github.com/spring-projects/spring-data-jpa
+Copyright: Copyright 2008-2024 the original author or authors.
+
+------------------------------------------------------------------------------
+
+ASM Tree 9.5
+License: BSD 3-clause "New" or "Revised" License
+Website: http://asm.ow2.io
+Copyright: Copyright (c) 2000-2011 INRIA, France Telecom // All rights reserved Copyright (c) 2020, 2022, Oracle and/or its affiliates. All rights reserved
+
+------------------------------------------------------------------------------
+
+ASM based accessors helper used by json-smart 2.5.2
+License: Apache License 2.0
+Website: https://javadoc.io/doc/net.minidev/json-smart/latest/index.html
+Copyright: Copyright (c) 2000-2011 INRIA, France Telecom All rights reserved.
+
+------------------------------------------------------------------------------
+
+Redisson/Spring Boot Starter 3.52.0
+License: Apache License 2.0
+Website: https://github.com/redisson/redisson
+Copyright: Copyright (c) 2013-2024 Nikita Koksharov
+
+------------------------------------------------------------------------------
+
+Hibernate Commons Annotations 7.0.3
+License: Apache License 2.0
+Website: http://hibernate.org
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc. , Copyright (c) 2020, 2022, Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
+
+Lettuce 6.6.0
+License: MIT License
+Website: http://github.com/lettuce-io/lettuce-core
+Copyright: Copyright 2011-Present, Redis Ltd. and Contributors Copyright 2020-2024 the original author or authors.
+
+------------------------------------------------------------------------------
+
+logstash-logback-encoder 8.1
+License: MIT License,Apache License 2.0
+Website: https://github.com/logfellow/logstash-logback-encoder
+Copyright: Copyright 2013-2023 logstash-logback-encoder contributors
+
+------------------------------------------------------------------------------
+
+swagger-annotations 2.2.41
+License: Apache License 2.0
+Website: https://github.com/swagger-api/swagger-core
+Copyright: Copyright (c) 2015. SmartBear Software Inc.
+
+------------------------------------------------------------------------------
+
+AssertJ - Fluent Assertions for Java 3.27.7
+License: Apache License 2.0
+Website: https://assertj.github.io/doc
+Copyright: Copyright (c) AssertJ contributors
+
+------------------------------------------------------------------------------
+
+org.junit.platform:junit-platform-launcher 1.12.2
+License: Eclipse Public License 2.0
+Website: https://github.com/junit-team/junit-framework/tree/main/junit-platform-launcher
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc. Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved Copyright 2015-2025 the original author or authors.
+
+------------------------------------------------------------------------------
+
+Byte Buddy 1.17.8
+License: Apache License 2.0
+Website: http://bytebuddy.net
+Copyright: Copyright (c) 2000-2011 INRIA, France Telecom, Copyright &#169; 2014, Copyright 2014 - Present Rafael Winterhalter
+
+------------------------------------------------------------------------------
+
+MapStruct Processor 1.5.5
+License: Apache License 2.0
+Website: http://mapstruct.org/mapstruct-processor
+Copyright: © The MapStruct authors 2025
+
+------------------------------------------------------------------------------
+
+ReflectASM 1.11.9
+License: BSD 3-clause "New" or "Revised" License
+Copyright: Copyright (c) 2008, Nathan Sweet * All rights reserved
+
+------------------------------------------------------------------------------
+
+antlr 4.13.0
+License: BSD 3-clause "New" or "Revised" License
+Website: http://antlr.org
+Copyright: Copyright (c) 2012-2017 The ANTLR Project. All rights reserved Copyright (c) 2020, 2022, Oracle and/or its affiliates. All rights reserved
+
+------------------------------------------------------------------------------
+
+webjars-locator-lite 1.1.3
+License: MIT License
+Copyright: Copyright (c) 2014–2017 James Ward
+
+------------------------------------------------------------------------------
+
+Commons IO 2.20.0
+License: Apache License 2.0
+Website: http://commons.apache.org/io
+Copyright: Copyright (C) 1989, 1991 Free Software Foundation, Inc. Copyright (c) 2013, 2023, Oracle and/or its affiliates. All rights reserved Copyright 2002-2025 The Apache Software Foundation This product includes software developed at
+
+------------------------------------------------------------------------------
+
+Jakarta Activation API 2.1.4
+License: Eclipse Distribution License 1.0
+Website: https://eclipse-ee4j.github.io/jaf
+Copyright: Copyright (c) 1997, 2023 Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
+
+Spring Commons Logging Bridge 6.2.18
+License: Apache License 2.0
+Copyright: Copyright (c) 2002-2026 Pivotal, Inc.
+
+------------------------------------------------------------------------------
+
+JAXB CORE 4.0.6
+License: Eclipse Distribution License 1.0
+Website: http://jaxb.java.net
+Copyright: Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+------------------------------------------------------------------------------
