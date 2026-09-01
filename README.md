@@ -1,4 +1,4 @@
-# hmg-ipmap
+# hmg-IPMap
 
 <p>
   <img src="https://img.shields.io/badge/status-active-brightgreen.svg" alt="active" />
