@@ -34,6 +34,12 @@ public class ApiKeyAuthenticationFilter extends OncePerRequestFilter {
     private final UserService userService;
 
     private static final String API_KEY_HEADER = "X-HMGIPMAP-APIKEY";
+
+    /**
+     * @deprecated Retained for existing sub-client parent contexts; scheduled for removal when the
+     *     legacy parent/source-IP model is retired.
+     */
+    @Deprecated(forRemoval = true)
     private static final String SOURCE_IP_HEADER = "X-HMGIPMAP-SOURCEIP";
 
     private static final String API_KEY_NOT_AUTHORIZE = "API key is required and cannot be empty";

@@ -18,8 +18,18 @@ public interface UserRepository
     @EntityGraph(attributePaths = {"parent"})
     Page<UserEntity> findAll(Specification<UserEntity> spec, Pageable pageable);
 
+    /**
+     * @deprecated Retained for legacy source-IP authentication; scheduled for removal when the
+     *     parent/source-IP model is retired.
+     */
+    @Deprecated(forRemoval = true)
     @EntityGraph(attributePaths = {"parent"})
     Optional<UserEntity> findByApiKeyAndSourceIp(String apiKey, String sourceIp);
 
+    /**
+     * @deprecated Retained for legacy parent-based authentication; scheduled for removal when the
+     *     parent/source-IP model is retired.
+     */
+    @Deprecated(forRemoval = true)
     Optional<UserEntity> findByApiKeyAndParentIsNull(String apiKey);
 }

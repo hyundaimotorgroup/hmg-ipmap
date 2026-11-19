@@ -28,6 +28,11 @@ public class UserEntity extends AuditableEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * @deprecated Will be removed in the next version due to removing SUB_CLIENT type. Scheduled
+     *     for removal.
+     */
+    @Deprecated(forRemoval = true)
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "parent_id")
     private UserEntity parent;

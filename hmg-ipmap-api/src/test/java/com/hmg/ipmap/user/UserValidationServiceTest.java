@@ -60,13 +60,19 @@ class UserValidationServiceTest {
     }
 
     @Test
-    @DisplayName("validateUserCreationPermissions: ADMIN creating SUB_CLIENT should succeed")
-    void validateUserCreationPermissions_adminCreatingSubClient_shouldSucceed() {
-        // When & Then - Should not throw exception
-        assertDoesNotThrow(
-                () ->
-                        validationService.validateUserCreationPermissions(
-                                adminContext, UserType.SUB_CLIENT));
+    @DisplayName(
+            "validateUserCreationPermissions: ADMIN creating SUB_CLIENT should throw exception")
+    void validateUserCreationPermissions_adminCreatingSubClient_shouldThrowException() {
+        // When & Then
+        BadRequestException exception =
+                assertThrows(
+                        BadRequestException.class,
+                        () ->
+                                validationService.validateUserCreationPermissions(
+                                        adminContext, UserType.SUB_CLIENT));
+
+        assertThat(exception.getMessage())
+                .isEqualTo("SUB_CLIENT user type is deprecated and cannot be created.");
     }
 
     @Test
@@ -80,31 +86,33 @@ class UserValidationServiceTest {
                                 validationService.validateUserCreationPermissions(
                                         adminContext, UserType.ADMIN));
 
-        assertThat(exception.getMessage()).isEqualTo("ADMIN user is not allowed to be created");
+        assertThat(exception.getMessage()).isEqualTo("Only CLIENT users can be created.");
     }
 
     @Test
-    @DisplayName("validateUserCreationPermissions: CLIENT creating SUB_CLIENT should succeed")
-    void validateUserCreationPermissions_clientCreatingSubClient_shouldSucceed() {
-        // When & Then - Should not throw exception
-        assertDoesNotThrow(
-                () ->
-                        validationService.validateUserCreationPermissions(
-                                clientContext, UserType.SUB_CLIENT));
-    }
-
-    @Test
-    @DisplayName("validateUserCreationPermissions: CLIENT creating CLIENT should throw exception")
-    void validateUserCreationPermissions_clientCreatingClient_shouldThrowException() {
+    @DisplayName(
+            "validateUserCreationPermissions: CLIENT creating SUB_CLIENT should throw exception")
+    void validateUserCreationPermissions_clientCreatingSubClient_shouldThrowException() {
         // When & Then
         BadRequestException exception =
                 assertThrows(
                         BadRequestException.class,
                         () ->
                                 validationService.validateUserCreationPermissions(
-                                        clientContext, UserType.CLIENT));
+                                        clientContext, UserType.SUB_CLIENT));
 
-        assertThat(exception.getMessage()).isEqualTo("CLIENT cannot create another CLIENT user.");
+        assertThat(exception.getMessage())
+                .isEqualTo("SUB_CLIENT user type is deprecated and cannot be created.");
+    }
+
+    @Test
+    @DisplayName("validateUserCreationPermissions: CLIENT creating CLIENT should succeed")
+    void validateUserCreationPermissions_clientCreatingClient_shouldSucceed() {
+        // When & Then - Should not throw exception
+        assertDoesNotThrow(
+                () ->
+                        validationService.validateUserCreationPermissions(
+                                clientContext, UserType.CLIENT));
     }
 
     @Test
@@ -118,34 +126,23 @@ class UserValidationServiceTest {
                                 validationService.validateUserCreationPermissions(
                                         clientContext, UserType.ADMIN));
 
-        assertThat(exception.getMessage()).isEqualTo("ADMIN user is not allowed to be created");
+        assertThat(exception.getMessage()).isEqualTo("Only CLIENT users can be created.");
     }
 
     @Test
     @DisplayName(
-            "validateUserCreationPermissions: SUB_CLIENT creating any user should throw exception")
-    void validateUserCreationPermissions_subClientCreatingUser_shouldThrowException() {
-        // When & Then - Try creating CLIENT
-        BadRequestException exceptionClient =
-                assertThrows(
-                        BadRequestException.class,
-                        () ->
-                                validationService.validateUserCreationPermissions(
-                                        subClientContext, UserType.CLIENT));
-
-        assertThat(exceptionClient.getMessage())
-                .isEqualTo("SUB_CLIENT user is not authorized to create other users");
-
-        // When & Then - Try creating SUB_CLIENT
-        BadRequestException exceptionSubClient =
+            "validateUserCreationPermissions: SUB_CLIENT creating SUB_CLIENT should throw exception")
+    void validateUserCreationPermissions_subClientCreatingSubClient_shouldThrowException() {
+        // When & Then
+        BadRequestException exception =
                 assertThrows(
                         BadRequestException.class,
                         () ->
                                 validationService.validateUserCreationPermissions(
                                         subClientContext, UserType.SUB_CLIENT));
 
-        assertThat(exceptionSubClient.getMessage())
-                .isEqualTo("SUB_CLIENT user is not authorized to create other users");
+        assertThat(exception.getMessage())
+                .isEqualTo("SUB_CLIENT user type is deprecated and cannot be created.");
     }
 
     // ------------------------------------------------------------------------
@@ -210,6 +207,7 @@ class UserValidationServiceTest {
     @DisplayName(
             "validateSubClientCreation: SUB_CLIENT with sourceIp and parentId by ADMIN should"
                     + " succeed")
+    @Deprecated(forRemoval = true)
     void validateSubClientCreation_withSourceIpAndParentIdByAdmin_shouldSucceed() {
         // Given
         UserRequestDto request =
@@ -222,6 +220,7 @@ class UserValidationServiceTest {
 
     @Test
     @DisplayName("validateSubClientCreation: SUB_CLIENT without sourceIp should throw exception")
+    @Deprecated(forRemoval = true)
     void validateSubClientCreation_withoutSourceIp_shouldThrowException() {
         // Given
         UserRequestDto request =
@@ -238,6 +237,7 @@ class UserValidationServiceTest {
 
     @Test
     @DisplayName("validateSubClientCreation: SUB_CLIENT with empty sourceIp should throw exception")
+    @Deprecated(forRemoval = true)
     void validateSubClientCreation_withEmptySourceIp_shouldThrowException() {
         // Given
         UserRequestDto request =
@@ -256,6 +256,7 @@ class UserValidationServiceTest {
     @DisplayName(
             "validateSubClientCreation: ADMIN creating SUB_CLIENT without parentId should throw"
                     + " exception")
+    @Deprecated(forRemoval = true)
     void validateSubClientCreation_adminWithoutParentId_shouldThrowException() {
         // Given
         UserRequestDto request =
@@ -274,6 +275,7 @@ class UserValidationServiceTest {
     @Test
     @DisplayName(
             "validateSubClientCreation: CLIENT creating SUB_CLIENT with sourceIp should succeed")
+    @Deprecated(forRemoval = true)
     void validateSubClientCreation_clientWithSourceIp_shouldSucceed() {
         // Given
         UserRequestDto request =
@@ -288,6 +290,7 @@ class UserValidationServiceTest {
     @DisplayName(
             "validateSubClientCreation: CLIENT creating SUB_CLIENT with own ID as parentId should"
                     + " throw exception")
+    @Deprecated(forRemoval = true)
     void validateSubClientCreation_clientWithOwnIdAsParentId_shouldThrowException() {
         // Given - parentId is same as clientContext.id() (2L)
         UserRequestDto request =
@@ -308,6 +311,7 @@ class UserValidationServiceTest {
     @DisplayName(
             "validateSubClientCreation: CLIENT creating SUB_CLIENT with different parentId should"
                     + " succeed")
+    @Deprecated(forRemoval = true)
     void validateSubClientCreation_clientWithDifferentParentId_shouldSucceed() {
         // Given - parentId is different from clientContext.id() (2L)
         UserRequestDto request =
@@ -325,6 +329,7 @@ class UserValidationServiceTest {
 
     @Test
     @DisplayName("validateSubClientUpdate: SUB_CLIENT with sourceIp should succeed")
+    @Deprecated(forRemoval = true)
     void validateSubClientUpdate_subClientWithSourceIp_shouldSucceed() {
         // Given
         UserRequestDto request =
@@ -336,6 +341,7 @@ class UserValidationServiceTest {
 
     @Test
     @DisplayName("validateSubClientUpdate: SUB_CLIENT without sourceIp should throw exception")
+    @Deprecated(forRemoval = true)
     void validateSubClientUpdate_subClientWithoutSourceIp_shouldThrowException() {
         // Given
         UserRequestDto request =
@@ -352,6 +358,7 @@ class UserValidationServiceTest {
 
     @Test
     @DisplayName("validateSubClientUpdate: SUB_CLIENT with blank sourceIp should throw exception")
+    @Deprecated(forRemoval = true)
     void validateSubClientUpdate_subClientWithBlankSourceIp_shouldThrowException() {
         // Given
         UserRequestDto request =
@@ -368,6 +375,7 @@ class UserValidationServiceTest {
 
     @Test
     @DisplayName("validateSubClientUpdate: CLIENT without sourceIp should succeed")
+    @Deprecated(forRemoval = true)
     void validateSubClientUpdate_clientWithoutSourceIp_shouldSucceed() {
         // Given
         UserRequestDto request =
@@ -379,6 +387,7 @@ class UserValidationServiceTest {
 
     @Test
     @DisplayName("validateSubClientUpdate: ADMIN without sourceIp should succeed")
+    @Deprecated(forRemoval = true)
     void validateSubClientUpdate_adminWithoutSourceIp_shouldSucceed() {
         // Given
         UserRequestDto request = new UserRequestDto("adminUser", null, null, UserType.ADMIN, null);

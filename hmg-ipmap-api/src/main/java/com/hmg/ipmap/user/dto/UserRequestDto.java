@@ -21,13 +21,17 @@ public record UserRequestDto(
                 String sourceIp,
         @Schema(
                         description =
-                                "The parent Id of the new user. This is for Sub Client type, must fill the parent id",
-                        example = "10",
+                                "Deprecated. Must be null; parent relationships cannot be assigned on create or update.",
+                        deprecated = true,
                         nullable = true)
-                @Positive(message = "parent_id must be a positive number")
                 Long parentId,
-        @Schema(description = "The user type of the new user", example = "SUB_CLIENT")
-                @NotNull(message = "user_type is required")
+        @Schema(
+                        description =
+                                "Deprecated. Omit this field: creation defaults to CLIENT and updates retain the existing type. Explicit values must be CLIENT for creation or match the existing type for updates.",
+                        example = "CLIENT",
+                        deprecated = true,
+                        nullable = true)
+                @Deprecated(forRemoval = true)
                 UserType userType,
         @Schema(
                         description = "The IP Location response template for this user. ",

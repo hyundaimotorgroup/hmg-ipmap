@@ -3,6 +3,7 @@ package com.hmg.ipmap.user;
 import com.hmg.ipmap.common.context.UserContext;
 import com.hmg.ipmap.common.context.UserContextHolder;
 import com.hmg.ipmap.common.enums.UserType;
+import com.hmg.ipmap.common.exception.BadRequestException;
 import com.hmg.ipmap.common.exception.NotFoundException;
 import com.hmg.ipmap.common.pagination.PaginationRequest;
 import com.hmg.ipmap.common.pagination.PaginationResponse;
@@ -43,6 +44,11 @@ public class UserServiceImpl implements UserService {
 
     private static final String USER_WITH_GIVEN_ID_NOT_FOUND = "User with given ID not found";
 
+    /**
+     * @deprecated Retained for legacy parent-based authentication; scheduled for removal when the
+     *     parent/source-IP model is retired.
+     */
+    @Deprecated(forRemoval = true)
     @Cacheable(
             value = "users",
             key = "'byApiKeyParentNull:' + #apiKey",
@@ -54,6 +60,11 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ApiKeyUnauthorizeException(USER_NOT_FOUND));
     }
 
+    /**
+     * @deprecated Retained for legacy source-IP authentication; scheduled for removal when the
+     *     parent/source-IP model is retired.
+     */
+    @Deprecated(forRemoval = true)
     @Cacheable(
             value = "users",
             key = "T(java.lang.String).format('%s|%s', #apiKey, #sourceIp)",
@@ -145,12 +156,18 @@ public class UserServiceImpl implements UserService {
             cacheManager = "caffeineCacheManager")
     @Override
     public UserResponseDto update(Long id, UserRequestDto userRequestDto) {
+        validateNoParentAssignment(userRequestDto);
         UserEntity existing =
                 userRepository
                         .findById(id)
                         .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
 
         checkUserAccess(UserContextHolder.get(), existing);
+
+        userRequestDto = resolveRequestUserType(userRequestDto, existing.getUserType());
+        if (userRequestDto.userType() != existing.getUserType()) {
+            throw new BadRequestException("User type cannot be changed.");
+        }
 
         // Validate update rules
         validationService.validateClientSourceIp(userRequestDto);
@@ -193,6 +210,24 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    private void validateNoParentAssignment(UserRequestDto userRequestDto) {
+        if (userRequestDto.parentId() != null) {
+            throw new BadRequestException("parentId is deprecated and cannot be assigned.");
+        }
+    }
+
+    private UserRequestDto resolveRequestUserType(UserRequestDto request, UserType defaultType) {
+        if (request.userType() != null) {
+            return request;
+        }
+        return new UserRequestDto(
+                request.name(),
+                request.sourceIp(),
+                request.parentId(),
+                defaultType,
+                request.responseTemplate());
+    }
+
     private UserEntity buildNewUser(UserRequestDto userRequestDto, UserContext requester) {
         UserEntity user = userMapper.toEntity(userRequestDto);
 
@@ -201,13 +236,8 @@ public class UserServiceImpl implements UserService {
         if (user.getResponseTemplate() == null) {
             user.setResponseTemplate(resolveDefaultResponseTemplate());
         }
-
-        if (userRequestDto.parentId() != null) {
-            setParentUser(user, userRequestDto.parentId());
-        } else if (requester.userType() == UserType.CLIENT
-                && userRequestDto.userType() == UserType.SUB_CLIENT) {
-            setParentUser(user, requester.id());
-        }
+        // only ADMIN can create UserType : ClIENT. SUB_CLIENT can not be created (deprecated)
+        user.setUserType(UserType.CLIENT);
 
         return user;
     }

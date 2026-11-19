@@ -50,7 +50,10 @@ public interface UserValidationService {
      * @param userRequestDto the user request data for the SUB_CLIENT being created
      * @param requester the user context of the requester creating the SUB_CLIENT
      * @throws BadRequestException if validation rules are violated
+     * @deprecated Scheduled for removal with SUB_CLIENT support. User creation now rejects
+     *     SUB_CLIENT before this legacy validation is needed.
      */
+    @Deprecated(forRemoval = true)
     void validateSubClientCreation(UserRequestDto userRequestDto, UserContext requester);
 
     /**
@@ -60,6 +63,9 @@ public interface UserValidationService {
      *
      * @param userRequestDto the user request data for the SUB_CLIENT being updated
      * @throws BadRequestException if SUB_CLIENT user type does not have a source IP address
+     * @deprecated Scheduled for removal with SUB_CLIENT support. Retained for validating updates to
+     *     persisted legacy users.
      */
+    @Deprecated(forRemoval = true)
     void validateSubClientUpdate(UserRequestDto userRequestDto);
 }

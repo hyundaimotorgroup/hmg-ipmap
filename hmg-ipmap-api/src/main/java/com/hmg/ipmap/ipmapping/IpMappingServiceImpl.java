@@ -41,8 +41,9 @@ import org.springframework.transaction.annotation.Transactional;
  * Service layer for IP mapping CRUD operations and IP span management.
  *
  * <p>Orchestrates entity construction (via {@link IpMappingFactory}), location resolution,
- * attribute and span lifecycle, and response assembly. Access control is enforced per operation
- * using the authenticated user context from {@link UserContextHolder}.
+ * attribute and span lifecycle, and response assembly. HTTP endpoint authorization is enforced by
+ * {@link com.hmg.ipmap.common.handler.ApiKeyAuthenticationFilter} using {@link
+ * com.hmg.ipmap.common.enums.UserType}.
  */
 @Service
 @Slf4j
@@ -73,6 +74,8 @@ public class IpMappingServiceImpl implements IpMappingService {
 
         Pageable pageable = PageRequest.of(page, size);
         log.trace("pageable={}", pageable);
+        // [DEPRECATED for removal] Only admins can invoke this method (see UserType), so the scope
+        // is always GLOBAL.
         Page<IpMappingEntity> ipMappingEntityPage =
                 switch (UserContextHolder.get().userType()) {
                     case SUB_CLIENT ->
@@ -216,10 +219,11 @@ public class IpMappingServiceImpl implements IpMappingService {
 
         log.trace("prepare to update/insert new ip mapping.");
 
-        updateIpMappingAttributeAndIpSpan(ipMappingRequestDto, existingIpMappingEntity);
-
         ipMappingFactory.applyUpdates(
                 existingIpMappingEntity, ipMappingRequestDto, smallestGeonameId, currentUser);
+
+        existingIpMappingEntity.setScope(Scope.GLOBAL);
+        updateIpMappingAttributeAndIpSpan(ipMappingRequestDto, existingIpMappingEntity);
 
         log.trace("update ip mapping");
         IpMappingEntity savedIpMappingEntity = ipMappingRepository.save(existingIpMappingEntity);
@@ -341,6 +345,10 @@ public class IpMappingServiceImpl implements IpMappingService {
                 ipMappingCache.getAttributeDtos().stream()
                         .map(ipMappingAttributeMapper::cacheToEntity)
                         .toList();
+
+        // The cache mapper does not carry the owner association, so resolve it from the cached user
+        // id
+        ipMappingEntity.setUser(userService.getEntityById(ipMappingCache.getUserId()));
 
         return buildIpMappingResponse(
                 ipMappingEntity, locationResponseDto, ipMappingAttributeEntityList);

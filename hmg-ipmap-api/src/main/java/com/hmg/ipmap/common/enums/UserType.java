@@ -14,9 +14,13 @@ public enum UserType {
                     ApiPaths.ADMIN_OPS,
                     ApiPaths.BATCH_FILE_IMPORTS,
                     ApiPaths.CACHE_OPS)),
-    CLIENT(Set.of(ApiPaths.USERS, ApiPaths.IP_LOCATION, ApiPaths.IP_MAPPINGS, ApiPaths.LOCATIONS)),
-    SUB_CLIENT(
-            Set.of(ApiPaths.USERS, ApiPaths.IP_LOCATION, ApiPaths.IP_MAPPINGS, ApiPaths.LOCATIONS));
+    CLIENT(Set.of(ApiPaths.IP_LOCATION)),
+    /**
+     * @deprecated Retained for existing sub-client authentication and reads; scheduled for removal
+     *     when the legacy parent/source-IP model is retired. New sub-clients cannot be created.
+     */
+    @Deprecated(forRemoval = true)
+    SUB_CLIENT(Set.of(ApiPaths.IP_LOCATION));
 
     private final Set<String> allowedEndpoints;
     private static final AntPathMatcher matcher = new AntPathMatcher();

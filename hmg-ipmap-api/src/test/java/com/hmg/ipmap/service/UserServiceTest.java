@@ -675,8 +675,9 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("create: SUB_CLIENT by CLIENT with sourceIp should auto-set parent")
-    void create_subClientByClientWithSourceIp_shouldAutoSetParent() {
+    @DisplayName(
+            "create: CLIENT requester creating SUB_CLIENT should be rejected by permission check")
+    void create_subClientByClient_shouldThrowBadRequestException() {
         // Given
         UserContext ctx =
                 new UserContext(
@@ -686,38 +687,21 @@ class UserServiceTest {
         UserRequestDto request =
                 new UserRequestDto("subClientUser", "192.168.1.1", null, UserType.SUB_CLIENT, null);
 
-        UserEntity clientUser = new UserEntity();
-        clientUser.setId(200L);
-        clientUser.setApiKey("client-key");
-
-        UserEntity savedUser = new UserEntity();
-        savedUser.setId(1L);
-        savedUser.setName("subClientUser");
-        savedUser.setUserType(UserType.SUB_CLIENT);
-        savedUser.setSourceIp("1.2.3.4");
-        savedUser.setParent(clientUser);
-
-        IpSingle mockIpSingle = mock(IpSingle.class);
-        when(mockIpSingle.toString()).thenReturn("1.2.3.4");
-
         when(userRepository.findByName("subClientUser")).thenReturn(Optional.empty());
-        when(ipNotationFactory.createIpSingle("192.168.1.1")).thenReturn(mockIpSingle);
-        when(userMapper.toEntity(request)).thenReturn(new UserEntity());
-        when(userRepository.findById(200L)).thenReturn(Optional.of(clientUser));
-        when(userRepository.save(any(UserEntity.class))).thenReturn(savedUser);
-        when(userMapper.toDto(savedUser)).thenReturn(new UserResponseDto());
+        doThrow(
+                        new com.hmg.ipmap.common.exception.BadRequestException(
+                                "CLIENT cannot create SUB_CLIENT user"))
+                .when(userValidationService)
+                .validateUserCreationPermissions(ctx, UserType.SUB_CLIENT);
 
-        try (var _ = mockStatic(IPv4Util.class)) {
+        // When & Then
+        com.hmg.ipmap.common.exception.BadRequestException exception =
+                assertThrows(
+                        com.hmg.ipmap.common.exception.BadRequestException.class,
+                        () -> userService.create(request));
 
-            // When
-            UserResponseDto response = userService.create(request);
-
-            // Then
-            assertThat(response).isNotNull();
-            ArgumentCaptor<UserEntity> userCaptor = ArgumentCaptor.forClass(UserEntity.class);
-            verify(userRepository).save(userCaptor.capture());
-            verify(userRepository).findById(200L); // Parent was fetched
-        }
+        assertThat(exception.getMessage()).contains("CLIENT cannot create SUB_CLIENT user");
+        verify(userRepository, never()).save(any(UserEntity.class));
     }
 
     @Test
@@ -754,8 +738,8 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("update: changing to CLIENT type should clear sourceIp")
-    void update_changingToClientType_shouldClearSourceIp() {
+    @DisplayName("update: CLIENT user with legacy sourceIp should have sourceIp cleared")
+    void update_clientWithLegacySourceIp_shouldClearSourceIp() {
         // Given
         UserContext ctx =
                 new UserContext(100L, "admin", UserType.ADMIN, "1.2.3.4", Scope.GLOBAL, null, null);
@@ -764,8 +748,8 @@ class UserServiceTest {
         UserEntity existingUser = new UserEntity();
         existingUser.setId(1L);
         existingUser.setName("user");
-        existingUser.setUserType(UserType.SUB_CLIENT);
-        existingUser.setSourceIp("1.2.3.4"); // Had sourceIp as SUB_CLIENT
+        existingUser.setUserType(UserType.CLIENT);
+        existingUser.setSourceIp("1.2.3.4"); // Stale sourceIp left over from legacy data
 
         UserRequestDto request = new UserRequestDto("user", null, null, UserType.CLIENT, null);
 
@@ -823,8 +807,8 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("update: changing to SUB_CLIENT with sourceIp in request should succeed")
-    void update_changingToSubClientWithSourceIp_shouldSucceed() {
+    @DisplayName("update: changing user type to SUB_CLIENT should be rejected")
+    void update_changingUserType_shouldThrowBadRequestException() {
         // Given
         UserContext ctx =
                 new UserContext(100L, "admin", UserType.ADMIN, "1.2.3.4", Scope.GLOBAL, null, null);
@@ -836,54 +820,9 @@ class UserServiceTest {
         existingUser.setUserType(UserType.CLIENT);
 
         UserRequestDto request =
-                new UserRequestDto(
-                        "user",
-                        "192.168.1.1",
-                        null,
-                        UserType.SUB_CLIENT,
-                        null); // Providing sourceIp
-
-        IpSingle mockIpSingle = mock(IpSingle.class);
-        when(mockIpSingle.toString()).thenReturn("1.2.3.4");
+                new UserRequestDto("user", "192.168.1.1", null, UserType.SUB_CLIENT, null);
 
         when(userRepository.findById(1L)).thenReturn(Optional.of(existingUser));
-        when(userRepository.findByName("user")).thenReturn(Optional.of(existingUser));
-        when(ipNotationFactory.createIpSingle("192.168.1.1")).thenReturn(mockIpSingle);
-        when(userRepository.save(any(UserEntity.class)))
-                .thenAnswer(invocation -> invocation.getArgument(0));
-        when(userMapper.toDto(any(UserEntity.class))).thenReturn(new UserResponseDto());
-
-        // When
-        UserResponseDto response = userService.update(1L, request);
-
-        // Then
-        assertThat(response).isNotNull();
-        verify(userRepository).save(any(UserEntity.class));
-    }
-
-    @Test
-    @DisplayName("update: changing to SUB_CLIENT without sourceIp and no existing should throw")
-    void update_changingToSubClientWithoutSourceIp_shouldThrowBadRequestException() {
-        // Given
-        UserContext ctx =
-                new UserContext(100L, "admin", UserType.ADMIN, "1.2.3.4", Scope.GLOBAL, null, null);
-        UserContextHolder.set(ctx);
-
-        UserEntity existingUser = new UserEntity();
-        existingUser.setId(1L);
-        existingUser.setName("user");
-        existingUser.setUserType(UserType.CLIENT);
-        existingUser.setSourceIp(null); // No existing sourceIp
-
-        UserRequestDto request = new UserRequestDto("user", null, null, UserType.SUB_CLIENT, null);
-
-        when(userRepository.findById(1L)).thenReturn(Optional.of(existingUser));
-        when(userRepository.findByName("user")).thenReturn(Optional.of(existingUser));
-        doThrow(
-                        new com.hmg.ipmap.common.exception.BadRequestException(
-                                "SUB_CLIENT user type must have a sourceIp"))
-                .when(userValidationService)
-                .validateClientSourceIp(request);
 
         // When & Then
         com.hmg.ipmap.common.exception.BadRequestException exception =
@@ -891,7 +830,7 @@ class UserServiceTest {
                         com.hmg.ipmap.common.exception.BadRequestException.class,
                         () -> userService.update(1L, request));
 
-        assertThat(exception.getMessage()).contains("SUB_CLIENT user type must have a sourceIp");
+        assertThat(exception.getMessage()).contains("User type cannot be changed.");
         verify(userRepository, never()).save(any(UserEntity.class));
     }
 

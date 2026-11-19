@@ -76,13 +76,17 @@ public class DbIpLocationResolver implements IpLocationResolver {
     }
 
     /**
-     * Iteratively searches for an IP span through the user hierarchy with cycle detection. Search
-     * order: current user scope -> parent scope -> ... -> global scope
+     * Searches legacy requester and parent records alongside GLOBAL records. Scope precedence is
+     * SUB_CLIENT, CLIENT, then GLOBAL; the newest matching span wins within the selected scope.
      *
      * @param ipAsLong the IP address as a long value
      * @param user the current user in the hierarchy
      * @return Optional containing the IP span if found, empty otherwise
+     * @deprecated Retained for legacy client and sub-client resolver reads. Remove the parent
+     *     lookup and client-scope precedence when legacy data compatibility is retired, preserving
+     *     GLOBAL resolution.
      */
+    @Deprecated(forRemoval = true)
     private Optional<IpSpanProjection> findIpSpanInUserHierarchy(long ipAsLong, UserContext user) {
         Stream<Long> hierarchyIds =
                 Stream.of(user, user.parent()).filter(Objects::nonNull).map(UserContext::id);

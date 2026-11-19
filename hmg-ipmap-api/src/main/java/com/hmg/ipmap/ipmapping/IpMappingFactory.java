@@ -94,8 +94,8 @@ public class IpMappingFactory {
      * geonameId.
      *
      * <p>Resolves the {@link LocationEntity} via {@link
-     * LocationServiceImpl#findLocationWithFallback(Long, UserEntity)}, which enforces ownership and
-     * prevents IDOR by design.
+     * LocationServiceImpl#findLocationWithFallback(Long, UserEntity)}, using the supplied user's
+     * location fallback hierarchy. Endpoint authorization is handled separately.
      *
      * @param request the create request DTO
      * @param user the authenticated user who will own the mapping

@@ -157,6 +157,10 @@ public abstract class BaseIpMappingController<T extends BaseIpMappingRequestDto>
         service.delete(id);
     }
 
+    /**
+     * @deprecated Will be moved to under OpsController
+     */
+    @Deprecated(forRemoval = true)
     @Operation(
             summary = "Rebuild IP spans by id range",
             description =

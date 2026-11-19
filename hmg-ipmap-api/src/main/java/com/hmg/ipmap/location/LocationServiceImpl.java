@@ -349,6 +349,17 @@ public class LocationServiceImpl implements LocationService {
         return createLocation(currentUser, allLocationMap, true);
     }
 
+    /**
+     * Resolves locations using the supplied user's legacy owner, parent, and GLOBAL fallback.
+     *
+     * <p>The resolution user is the mapping owner for IP-location reads, or the user whose location
+     * references are being validated for writes. This method does not authorize requests.
+     *
+     * @deprecated Retained for legacy client and sub-client resolver reads. Remove client and
+     *     parent fallback routing when legacy data compatibility is retired, preserving GLOBAL
+     *     resolution.
+     */
+    @Deprecated(forRemoval = true)
     @Override
     public Optional<LocationEntity> findLocationWithFallback(
             Long geonameId, UserEntity currentUser) {
@@ -364,7 +375,11 @@ public class LocationServiceImpl implements LocationService {
     /**
      * Resolves a location by geonameId for a CLIENT user, falling back to the GLOBAL scope when no
      * user-owned record is found.
+     *
+     * @deprecated Retained for legacy CLIENT resolver reads. Remove this helper when legacy
+     *     client-owned location compatibility is retired; preserve GLOBAL resolution.
      */
+    @Deprecated(forRemoval = true)
     private Optional<LocationEntity> findLocationForClient(Long geonameId, UserEntity currentUser) {
         // Try current user
         Optional<LocationEntity> locationOpt =
@@ -380,7 +395,11 @@ public class LocationServiceImpl implements LocationService {
     /**
      * Resolves a location by geonameId for a SUB_CLIENT user, cascading through the user's own
      * records, the parent user's records, and then the GLOBAL scope.
+     *
+     * @deprecated Retained for legacy SUB_CLIENT resolver reads. Remove this helper and its parent
+     *     lookup when legacy sub-client compatibility is retired; preserve GLOBAL resolution.
      */
+    @Deprecated(forRemoval = true)
     private Optional<LocationEntity> findLocationForSubClient(
             Long geonameId, UserEntity currentUser) {
         // Try current user
@@ -485,6 +504,14 @@ public class LocationServiceImpl implements LocationService {
         return onlyGeonameId;
     }
 
+    /**
+     * Resolves location batches with the legacy user and parent fallback routing.
+     *
+     * @deprecated Retained for legacy client and sub-client resolver reads. Remove client and
+     *     parent fallback routing when legacy data compatibility is retired, preserving GLOBAL
+     *     resolution.
+     */
+    @Deprecated(forRemoval = true)
     @Override
     public List<LocationEntity> findLocationByGeonameIdsWithFallback(
             List<Long> geonameIds, UserEntity currentUser) {
@@ -501,7 +528,11 @@ public class LocationServiceImpl implements LocationService {
     /**
      * Resolves multiple locations by geonameId for a CLIENT user, falling back to the GLOBAL scope
      * when the user has no matching records.
+     *
+     * @deprecated Retained for legacy CLIENT resolver reads. Remove this helper when legacy
+     *     client-owned location compatibility is retired; preserve GLOBAL resolution.
      */
+    @Deprecated(forRemoval = true)
     private List<LocationEntity> findLocationByGeonameIdsForClient(
             List<Long> geonameIds, UserEntity currentUser) {
         // Try current user
@@ -519,7 +550,11 @@ public class LocationServiceImpl implements LocationService {
     /**
      * Resolves multiple locations by geonameId for a SUB_CLIENT user, cascading through the user,
      * the parent user, and the GLOBAL scope.
+     *
+     * @deprecated Retained for legacy SUB_CLIENT resolver reads. Remove this helper and its parent
+     *     lookup when legacy sub-client compatibility is retired; preserve GLOBAL resolution.
      */
+    @Deprecated(forRemoval = true)
     private List<LocationEntity> findLocationByGeonameIdsForSubClient(
             List<Long> geonameIds, UserEntity currentUser) {
         // Try current user
@@ -673,6 +708,7 @@ public class LocationServiceImpl implements LocationService {
      */
     private Map<LocationLevel, LocationDto> saveAndPopulateLocationResponseDto(
             UserEntity user, Map<LocationLevel, LocationDto> allLocationMap) {
+        // Only admins can create locations (see UserType), so the scope is always GLOBAL.
         Scope scope = UserContextHolder.get().scope();
         List<Map.Entry<LocationLevel, LocationDto>> sortedEntries =
                 allLocationMap.entrySet().stream()

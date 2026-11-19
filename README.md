@@ -3,8 +3,8 @@
 <p>
   <img src="https://img.shields.io/badge/status-active-brightgreen.svg" alt="active" />
    <img
-   src="https://img.shields.io/badge/version-v0.1.0-green.svg"
-   alt="Version: v0.1.0"/>
+   src="https://img.shields.io/badge/version-v0.1.1-green.svg"
+   alt="Version: v0.1.1"/>
   <a href="https://opensource.org/licenses/Apache-2.0">
     <img
       src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"

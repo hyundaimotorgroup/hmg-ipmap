@@ -11,22 +11,14 @@ import org.springframework.util.StringUtils;
 /**
  * Service class responsible for validating user-related business rules and constraints.
  *
- * <p>This service enforces hierarchical access control and validation rules for user creation and
- * updates, including:
+ * <p>This service restricts provisioning to CLIENT accounts and validates source IP rules for
+ * current and persisted legacy users, including:
  *
  * <ul>
  *   <li>User type-based creation permissions
  *   <li>Source IP address validation based on user type
- *   <li>Parent-child relationship validation for SUB_CLIENT users
+ *   <li>Legacy SUB_CLIENT validation retained until support is removed
  * </ul>
- *
- * <p>User hierarchy:
- *
- * <pre>
- * ADMIN (top-level)
- *   └─ CLIENT (can create SUB_CLIENT)
- *       └─ SUB_CLIENT (cannot create users)
- * </pre>
  *
  * @see UserServiceImpl
  * @see UserType
@@ -37,20 +29,13 @@ public class UserValidationServiceImpl implements UserValidationService {
 
     @Override
     public void validateUserCreationPermissions(UserContext requester, UserType targetUserType) {
-        // No one can create ADMIN
-        if (targetUserType == UserType.ADMIN) {
-            throw new BadRequestException("ADMIN user is not allowed to be created");
-        }
-
-        // SUB_CLIENT cannot create any user
-        if (requester.userType() == UserType.SUB_CLIENT) {
+        if (targetUserType == UserType.SUB_CLIENT) {
             throw new BadRequestException(
-                    "SUB_CLIENT user is not authorized to create other users");
+                    "SUB_CLIENT user type is deprecated and cannot be created.");
         }
 
-        // CLIENT can only create SUB_CLIENT
-        if (requester.userType() == UserType.CLIENT && targetUserType == UserType.CLIENT) {
-            throw new BadRequestException("CLIENT cannot create another CLIENT user.");
+        if (targetUserType != UserType.CLIENT) {
+            throw new BadRequestException("Only CLIENT users can be created.");
         }
     }
 
@@ -62,6 +47,10 @@ public class UserValidationServiceImpl implements UserValidationService {
         }
     }
 
+    /**
+     * @deprecated Scheduled for removal with SUB_CLIENT support; provisioning rejects this type.
+     */
+    @Deprecated(forRemoval = true)
     @Override
     public void validateSubClientCreation(UserRequestDto userRequestDto, UserContext requester) {
         // SUB_CLIENT must always have a sourceIp
@@ -82,6 +71,10 @@ public class UserValidationServiceImpl implements UserValidationService {
         }
     }
 
+    /**
+     * @deprecated Scheduled for removal with SUB_CLIENT support; retained for persisted users.
+     */
+    @Deprecated(forRemoval = true)
     @Override
     public void validateSubClientUpdate(UserRequestDto userRequestDto) {
         if (userRequestDto.userType() == UserType.SUB_CLIENT

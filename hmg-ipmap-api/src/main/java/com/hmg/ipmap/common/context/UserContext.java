@@ -10,5 +10,5 @@ public record UserContext(
         UserType userType,
         String sourceIp,
         Scope scope,
-        UserContext parent,
+        @Deprecated(forRemoval = true) UserContext parent,
         UserResponseTemplateEnum responseTemplate) {}

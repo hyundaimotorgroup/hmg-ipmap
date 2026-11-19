@@ -8,8 +8,18 @@ import com.hmg.ipmap.user.dto.UserResponseDto;
 
 public interface UserService {
 
+    /**
+     * @deprecated Retained for legacy parent-based authentication; scheduled for removal when the
+     *     parent/source-IP model is retired.
+     */
+    @Deprecated(forRemoval = true)
     UserEntity findByApiKeyAndParentIsNull(String apiKey);
 
+    /**
+     * @deprecated Retained for legacy source-IP authentication; scheduled for removal when the
+     *     parent/source-IP model is retired.
+     */
+    @Deprecated(forRemoval = true)
     UserEntity findByApiKeyAndSourceIp(String apiKey, String sourceIp);
 
     PaginationResponse<UserResponseDto> searchWithPagination(PaginationRequest req);
